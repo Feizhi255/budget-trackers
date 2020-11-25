@@ -44,5 +44,20 @@
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
   <script src="index.js"></script>
+  <script>
+    // if (navigator.serviceWorker) {}
+    if ("serviceWorker" in navigator) {
+      // compatible w/ service workers
+      window.addEventListener("load", () => {
+        navigator
+          .serviceWorker
+          .register("/sw.js")
+          .then(registation => {
+            console.log("Successfully reached SW:", registation)
+          })
+          .catch(error => console.log("SW registration error: ", error));
+      });
+    }
+  </script>
 </body>
 </html>
