@@ -15,7 +15,6 @@ const fileToCache = [
 
 // install lifecycle method
 self.addEventListener('install', (event) => {
-    console.log('hit install');
     event.waitUntil(
         caches
             .open(fileCacheName)
@@ -28,8 +27,6 @@ self.addEventListener('install', (event) => {
 });
 
 self.addEventListener("activate", (event) => {
-    console.log("hit activation");
-
     event.waitUntil(
         caches
             .keys()
@@ -52,9 +49,6 @@ self.addEventListener("activate", (event) => {
 });
 
 self.addEventListener("fetch", (event) => {
-    // console.log(event);
-
-    // handle api caching
     if (event.request.url.includes("/api")) {
         return event.respondWith(
             caches
